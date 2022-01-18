@@ -1,0 +1,36 @@
+version: '3.1'
+
+
+services:
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: test69
+
+  api:
+    depends_on:
+      - db
+    restart: on-failure
+    ports:
+      - 6969:6969
+    build: .
+    environment:
+        SPRING_APPLICATION_JSON: '{
+              "spring.datasource.url"  : "jdbc:mysql://db:3306/test69?useSSL=false",
+              "spring.datasource.username" : "root",
+              "spring.datasource.password" : "root",
+              "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+              "spring.jpa.hibernate.ddl-auto" : "update"
+            }'
+
+
+
+
+
