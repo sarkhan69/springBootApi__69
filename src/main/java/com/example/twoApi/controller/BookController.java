@@ -18,11 +18,7 @@ public class BookController {
 
     @GetMapping("/{id}")
     public Book getBookById(@PathVariable Long id) {
-        Book book = bookService.getBookById(id);
-        if (book == null) {
-            throw new NoSuchBookException("Бро, тут такое дело, книги с таким айди = " + id + " не нашлось в базе...");
-        }
-        return book;
+        return bookService.getBookById(id).orElseThrow(()->new NoSuchBookException(String.valueOf(id)));
     }
 
     @GetMapping
