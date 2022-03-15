@@ -1,9 +1,24 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
 spring:
+  appliaction:
+    name: DEMO69
   datasource:
     url: jdbc:postgresql://localhost:5432/my_db
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
+
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
     url: ${spring.datasource.url}
