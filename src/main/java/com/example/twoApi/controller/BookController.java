@@ -3,6 +3,7 @@ package com.example.twoApi.controller;
 import com.example.twoApi.exception_handling.NoSuchBookException;
 import com.example.twoApi.models.Book;
 import com.example.twoApi.service.DefaultBookService;
+import com.example.twoApi.service.metrics.CountMetricService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,8 @@ public class BookController {
 
     @Autowired
     private DefaultBookService bookService;
+    @Autowired
+    private CountMetricService countMetricService;
 
     @GetMapping("/{id}")
     public Book getBookById(@PathVariable Long id) {

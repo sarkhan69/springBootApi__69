@@ -18,25 +18,25 @@ public class DefaultBookService implements BookService {
 
     @Override
     public Optional<Book> getBookById(Long id) {
-        log.info("Поиск записи с id = {}", id);
+        log.debug("Поиск записи с id = {}", id);
         return bookRepository.findById(id);
     }
 
     @Override
     public List<Book> getAllBooks() {
-        log.info("Поиск всех записей в таблице books");
+        log.debug("Поиск всех записей в таблице books");
         return bookRepository.findAll();
     }
 
     @Override
     public void addBook(Book book) {
-        log.info("Запись в базу {}", book);
+        log.debug("Запись в базу {}", book);
         bookRepository.save(book);
     }
 
     @Override
     public void deleteBookById(Long id) {
-        log.info("Удаление записи с id = {}", id);
+        log.debug("Удаление записи с id = {}", id);
         bookRepository.deleteById(id);
     }
 }
